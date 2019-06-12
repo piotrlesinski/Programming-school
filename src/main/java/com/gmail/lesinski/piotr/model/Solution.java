@@ -13,8 +13,7 @@ public class Solution {
 
     }
 
-    public Solution(int id, String created, String updated, String description, int exercise_id, int user_id) {
-        this.id = id;
+    public Solution(String created, String updated, String description, int exercise_id, int user_id) {
         this.created = created;
         this.updated = updated;
         this.description = description;
@@ -68,5 +67,17 @@ public class Solution {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Solution{" +
+                "id=" + id +
+                ", created='" + created + '\'' +
+                ", updated='" + updated + '\'' +
+                ", description='" + description + '\'' +
+                ", exercise_id=" + exercise_id +
+                ", user_id=" + user_id +
+                '}';
     }
 }

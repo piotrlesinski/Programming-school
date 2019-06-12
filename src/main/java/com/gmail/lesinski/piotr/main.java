@@ -1,11 +1,15 @@
 package com.gmail.lesinski.piotr;
 
 import com.gmail.lesinski.piotr.dao.ExerciseDao;
+import com.gmail.lesinski.piotr.dao.GroupDao;
 import com.gmail.lesinski.piotr.dao.UserDao;
 import com.gmail.lesinski.piotr.model.Exercise;
+import com.gmail.lesinski.piotr.model.Group;
 import com.gmail.lesinski.piotr.model.User;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.List;
 
 public class main {
 
@@ -49,22 +53,43 @@ public class main {
 //        System.out.println("FIND ALL" );
 //        System.out.println(UserDao.findAll());
 
-        Exercise exercise1 = new Exercise("Zakupy", "2 mleka");
-        ExerciseDao.create(exercise1);
+//        Exercise exercise1 = new Exercise("Zakupy", "2 mleka");
+//        ExerciseDao.create(exercise1);
+//
+//        ExerciseDao.create(new Exercise("Zakupy", "3 masła"));
+//        ExerciseDao.create(new Exercise("Zakupy", "4 piwa"));
+//        ExerciseDao.create(new Exercise("Poczta", "odebrać paczkę na poczcie"));
+//        ExerciseDao.create(new Exercise("Auto", "zrobić przegląd okresowy auta"));
+//
+//        exercise1 = new Exercise("Zakupy", "4 mleka");
+//        ExerciseDao.update(exercise1);
+//
+//        System.out.println(ExerciseDao.read(1));
+//
+//        System.out.println("DELETE " + ExerciseDao.delete(1));
+//
+//        System.out.println("All: " + ExerciseDao.findAll());
 
-        ExerciseDao.create(new Exercise("Zakupy", "3 masła"));
-        ExerciseDao.create(new Exercise("Zakupy", "4 piwa"));
-        ExerciseDao.create(new Exercise("Poczta", "odebrać paczkę na poczcie"));
-        ExerciseDao.create(new Exercise("Auto", "zrobić przegląd okresowy auta"));
 
-        exercise1 = new Exercise("Zakupy", "4 mleka");
-        ExerciseDao.update(exercise1);
+//        Group group = new Group("misie");
+//        GroupDao.create(group);
+//        GroupDao.create(new Group("kotki"));
+//        GroupDao.create(new Group("pieski"));
+//        GroupDao.create(new Group("kucyki"));
+//        GroupDao.create(new Group("rybki"));
+//
+//        group.setName("super misie");
+//        GroupDao.update(group);
+//
+//        System.out.println("READ " + GroupDao.read(1));
+//
+//        System.out.println("DELETE " + GroupDao.delete(1));
 
-        System.out.println(ExerciseDao.read(1));
+        List<Group> groupList = GroupDao.findAll();
+        for (Group grupa : groupList) {
+            System.out.println(grupa);
+        }
 
-        System.out.println("DELETE " + ExerciseDao.delete(1));
-
-        System.out.println("All: " + ExerciseDao.findAll());
 
     }
 }
