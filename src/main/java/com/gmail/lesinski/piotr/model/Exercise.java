@@ -10,8 +10,7 @@ public class Exercise {
 
     }
 
-    public Exercise(int id, String title, String description) {
-        this.id = id;
+    public Exercise(String title, String description) {
         this.title = title;
         this.description = description;
     }
