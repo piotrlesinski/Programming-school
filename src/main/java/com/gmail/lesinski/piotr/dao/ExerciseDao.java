@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ExerciseDao {
 
-    public static final Logger logger = Logger.getLogger(UserDao.class);
+    public static final Logger logger = Logger.getLogger(ExerciseDao.class);
 
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GroupDao {
 
-    public static final Logger logger = Logger.getLogger(UserDao.class);
+    public static final Logger logger = Logger.getLogger(GroupDao.class);
 
 
 

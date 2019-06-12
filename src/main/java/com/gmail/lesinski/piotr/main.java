@@ -2,9 +2,11 @@ package com.gmail.lesinski.piotr;
 
 import com.gmail.lesinski.piotr.dao.ExerciseDao;
 import com.gmail.lesinski.piotr.dao.GroupDao;
+import com.gmail.lesinski.piotr.dao.SolutionDao;
 import com.gmail.lesinski.piotr.dao.UserDao;
 import com.gmail.lesinski.piotr.model.Exercise;
 import com.gmail.lesinski.piotr.model.Group;
+import com.gmail.lesinski.piotr.model.Solution;
 import com.gmail.lesinski.piotr.model.User;
 
 import java.sql.SQLOutput;
@@ -15,29 +17,18 @@ public class main {
 
     public static void main(String[] args) {
 
-        User user1 = new User("Jan Kowalski", "jankowalski@gmail.com", "tajne");
-        User user2 = new User("Adam Kowalski", "adam.kowalski@gmail.com", "tajne");
-        User user3 = new User("Robert Kowalski", "robert.kowalski@gmail.com", "tajne");
-        User user4 = new User("Jan Nowak", "jan.nowak@gmail.com", "tajne");
-        User user5 = new User("Adam Nowak", "adam.nowak@gmail.com", "tajne");
-        User user6 = new User("Robert Nowak", "robert.nowak@gmail.com", "tajne");
+//==============================  USER  ===================================================
 
+//        User user1 = new User("Jan Kowalski", "jankowalski@gmail.com", "tajne");
 //        UserDao.create(user1);
-//        UserDao.create(user2);
-//        UserDao.create(user3);
-//        UserDao.create(user4);
-//        UserDao.create(user5);
-//        UserDao.create(user6);
+//        UserDao.create(new User("Adam Kowalski", "adam.kowalski@gmail.com", "tajne"));
+//        UserDao.create(new User("Robert Kowalski", "robert.kowalski@gmail.com", "tajne"));
+//        UserDao.create(new User("Jan Nowak", "jan.nowak@gmail.com", "tajne"));
+//        UserDao.create(new User("Adam Nowak", "adam.nowak@gmail.com", "tajne"));
+//        UserDao.create(new User("Robert Nowak", "robert.nowak@gmail.com", "tajne"));
 //
 //        int idUser1 = user1.getId( );
-//        int idUser2 = user2.getId( );
-//        int idUser3 = user3.getId( );
-//        int idUser4 = user4.getId( );
-//        int idUser5 = user5.getId( );
-//        int idUser6 = user6.getId( );
-//
-//        System.out.println("id1: "  + idUser1 + " id2: " + idUser2 + " id3+: " +idUser3 + " id4+: " +idUser4
-//                + " id5+: " +idUser5 + " id6+: " +idUser6);
+//        System.out.println("id1: "  + idUser1);
 //
 //        System.out.println("READ Użtykownik z id 2: " + UserDao.read(2));
 //
@@ -52,6 +43,8 @@ public class main {
 //
 //        System.out.println("FIND ALL" );
 //        System.out.println(UserDao.findAll());
+
+// ============================  EXERCISE  ================================================
 
 //        Exercise exercise1 = new Exercise("Zakupy", "2 mleka");
 //        ExerciseDao.create(exercise1);
@@ -70,6 +63,7 @@ public class main {
 //
 //        System.out.println("All: " + ExerciseDao.findAll());
 
+// =================================  GROUP  ==========================================
 
 //        Group group = new Group("misie");
 //        GroupDao.create(group);
@@ -85,9 +79,38 @@ public class main {
 //
 //        System.out.println("DELETE " + GroupDao.delete(1));
 
-        List<Group> groupList = GroupDao.findAll();
-        for (Group grupa : groupList) {
-            System.out.println(grupa);
+//        List<Group> groupList = GroupDao.findAll();
+//        for (Group grupa : groupList) {
+//            System.out.println(grupa);
+//        }
+
+//====================================  SOLUTION  ========================================
+
+        Solution solution = new Solution("2019-06-11 15:15:15", "2019-06-12 15:16:17",
+                "łatwe i przyjemne", 2, 1);
+        SolutionDao.create(solution);
+
+        SolutionDao.create(new Solution("2019-05-10 14:20:25", "2019-06-11 20:15:20",
+                                        "fajne", 3, 3));
+
+        SolutionDao.create(new Solution("2019-05-11 23:00:00", "2019-06-11 21:20:30",
+                                        "super", 3, 7));
+
+        SolutionDao.create(new Solution("2019-04-20 15:23:44", "2019-06-11 10:22:00",
+                                        "mega", 5, 8));
+
+        SolutionDao.create(new Solution("2019-01-10 21:10:00", "2019-06-11 21:00:00",
+                                         "ok", 4, 9));
+
+        solution.setDescription("nie łatwe acz mega trudne");
+        SolutionDao.update(solution);
+        System.out.println("READ: " + SolutionDao.read(1));
+
+        System.out.println("DELETE: " + SolutionDao.delete(1));
+
+        List<Solution> solutionList = SolutionDao.findAll( );
+        for (Solution rozw : solutionList) {
+            System.out.println(rozw);
         }
 
 
