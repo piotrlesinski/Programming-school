@@ -1,6 +1,20 @@
 package com.gmail.lesinski.piotr.model;
 
+import com.gmail.lesinski.piotr.dao.DbUtil;
+import com.gmail.lesinski.piotr.dao.SolutionDao;
+import org.apache.log4j.Logger;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution {
+
+    public static final Logger logger = Logger.getLogger(SolutionDao.class);
+
 
     private int id;
     private String created;
@@ -9,7 +23,68 @@ public class Solution {
     private int exercise_id;
     private int user_id;
 
-    public Solution(){
+    private static final String FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY =
+            "SELECT * FROM solution JOIN users ON solution.user_id=users.id WHERE users.id=?;";
+
+    private static final String FIND_ALL_BY_USER_ID =
+            "SELECT * FROM solution JOIN exercise ON solution.exercise_id=exercise.id WHERE exercise_id = ?;";
+
+
+
+    public static List<Solution> findAllByUserId (Integer userId) {
+
+        List<Solution> solutionList = new ArrayList<>( );
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_USER_ID)
+        ) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Solution solution = new Solution();
+                    solution.setId(resultSet.getInt("id"));
+                    solution.setCreated(resultSet.getString("created"));
+                    solution.setUpdated(resultSet.getString("updated"));
+                    solution.setDescription(resultSet.getString("description"));
+                    solution.setExercise_id(resultSet.getInt("exercise_id"));
+                    solution.setUser_id(resultSet.getInt("user_id"));
+                    solutionList.add(solution);
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Błąd odczytu rozwiązania o id=" + userId, e);
+        }
+        return solutionList;
+
+    }
+
+
+    public static List<Solution> findAllByExerciseId (Integer exerciseId) {
+
+        List<Solution> solutionList = new ArrayList<>( );
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY)
+        ) {
+            statement.setInt(1, exerciseId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Solution solution = new Solution();
+                    solution.setId(resultSet.getInt("id"));
+                    solution.setCreated(resultSet.getString("created"));
+                    solution.setUpdated(resultSet.getString("updated"));
+                    solution.setDescription(resultSet.getString("description"));
+                    solution.setExercise_id(resultSet.getInt("exercise_id"));
+                    solution.setUser_id(resultSet.getInt("user_id"));
+                    solutionList.add(solution);
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Błąd odczytu rozwiązania o id=" + exerciseId, e);
+        }
+        return solutionList;
+
+    }
+
+    public Solution() {
 
     }
 

@@ -86,33 +86,44 @@ public class main {
 
 //====================================  SOLUTION  ========================================
 
-        Solution solution = new Solution("2019-06-11 15:15:15", "2019-06-12 15:16:17",
-                "łatwe i przyjemne", 2, 1);
-        SolutionDao.create(solution);
+//        Solution solution = new Solution("2019-06-11 15:15:15", "2019-06-12 15:16:17",
+//                "łatwe i przyjemne", 2, 1);
+//        SolutionDao.create(solution);
+//
+//        SolutionDao.create(new Solution("2019-05-10 14:20:25", "2019-06-11 20:15:20",
+//                                        "fajne", 3, 3));
+//
+//        SolutionDao.create(new Solution("2019-05-11 23:00:00", "2019-06-11 21:20:30",
+//                                        "super", 3, 7));
+//
+//        SolutionDao.create(new Solution("2019-04-20 15:23:44", "2019-06-11 10:22:00",
+//                                        "mega", 5, 8));
+//
+//        SolutionDao.create(new Solution("2019-01-10 21:10:00", "2019-06-11 21:00:00",
+//                                         "ok", 4, 9));
+//
+//        solution.setDescription("nie łatwe acz mega trudne");
+//        SolutionDao.update(solution);
+//        System.out.println("READ: " + SolutionDao.read(1));
+//
+//        System.out.println("DELETE: " + SolutionDao.delete(1));
+//
+//        List<Solution> solutionList = SolutionDao.findAll( );
+//        for (Solution rozw : solutionList) {
+//            System.out.println(rozw);
+//        }
 
-        SolutionDao.create(new Solution("2019-05-10 14:20:25", "2019-06-11 20:15:20",
-                                        "fajne", 3, 3));
-
-        SolutionDao.create(new Solution("2019-05-11 23:00:00", "2019-06-11 21:20:30",
-                                        "super", 3, 7));
-
-        SolutionDao.create(new Solution("2019-04-20 15:23:44", "2019-06-11 10:22:00",
-                                        "mega", 5, 8));
-
-        SolutionDao.create(new Solution("2019-01-10 21:10:00", "2019-06-11 21:00:00",
-                                         "ok", 4, 9));
-
-        solution.setDescription("nie łatwe acz mega trudne");
-        SolutionDao.update(solution);
-        System.out.println("READ: " + SolutionDao.read(1));
-
-        System.out.println("DELETE: " + SolutionDao.delete(1));
-
-        List<Solution> solutionList = SolutionDao.findAll( );
-        for (Solution rozw : solutionList) {
-            System.out.println(rozw);
+        System.out.println("Find all by User ID: ");
+        List<Solution> findAllByUserIdList = Solution.findAllByUserId(3);
+        for (Solution sol : findAllByUserIdList) {
+            System.out.println(sol);
         }
 
+        System.out.println("\nFind all by Exercise ID:");
+        List<Solution> findAllByExerciseIdList = Solution.findAllByExerciseId(3);
+        for (Solution sol : findAllByExerciseIdList) {
+            System.out.println(sol);
+        }
 
     }
 }
