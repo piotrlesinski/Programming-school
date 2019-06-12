@@ -17,15 +17,37 @@ public class main {
 
     public static void main(String[] args) {
 
+        // =================================  GROUP  ==========================================
+
+//        Group group = new Group("misie");
+//        GroupDao.create(group);
+//        GroupDao.create(new Group("kotki"));
+//        GroupDao.create(new Group("pieski"));
+//        GroupDao.create(new Group("kucyki"));
+//        GroupDao.create(new Group("rybki"));
+//
+//        group.setName("super misie");
+//        GroupDao.update(group);
+//
+//        System.out.println("READ " + GroupDao.read(1));
+//
+//        System.out.println("DELETE " + GroupDao.delete(1));
+
+//        List<Group> groupList = GroupDao.findAll();
+//        for (Group grupa : groupList) {
+//            System.out.println(grupa);
+//        }
+
+
 //==============================  USER  ===================================================
 
-//        User user1 = new User("Jan Kowalski", "jankowalski@gmail.com", "tajne");
+//        User user1 = new User("Jan Kowalski", "jankowalski@gmail.com", 2, "tajne");
 //        UserDao.create(user1);
-//        UserDao.create(new User("Adam Kowalski", "adam.kowalski@gmail.com", "tajne"));
-//        UserDao.create(new User("Robert Kowalski", "robert.kowalski@gmail.com", "tajne"));
-//        UserDao.create(new User("Jan Nowak", "jan.nowak@gmail.com", "tajne"));
-//        UserDao.create(new User("Adam Nowak", "adam.nowak@gmail.com", "tajne"));
-//        UserDao.create(new User("Robert Nowak", "robert.nowak@gmail.com", "tajne"));
+//        UserDao.create(new User("Adam Kowalski", "adam.kowalski@gmail.com", 3, "tajne"));
+//        UserDao.create(new User("Robert Kowalski", "robert.kowalski@gmail.com", 2, "tajne"));
+//        UserDao.create(new User("Jan Nowak", "jan.nowak@gmail.com", 4, "tajne"));
+//        UserDao.create(new User("Adam Nowak", "adam.nowak@gmail.com", 2, "tajne"));
+//        UserDao.create(new User("Robert Nowak", "robert.nowak@gmail.com", 2, "tajne"));
 //
 //        int idUser1 = user1.getId( );
 //        System.out.println("id1: "  + idUser1);
@@ -63,26 +85,6 @@ public class main {
 //
 //        System.out.println("All: " + ExerciseDao.findAll());
 
-// =================================  GROUP  ==========================================
-
-//        Group group = new Group("misie");
-//        GroupDao.create(group);
-//        GroupDao.create(new Group("kotki"));
-//        GroupDao.create(new Group("pieski"));
-//        GroupDao.create(new Group("kucyki"));
-//        GroupDao.create(new Group("rybki"));
-//
-//        group.setName("super misie");
-//        GroupDao.update(group);
-//
-//        System.out.println("READ " + GroupDao.read(1));
-//
-//        System.out.println("DELETE " + GroupDao.delete(1));
-
-//        List<Group> groupList = GroupDao.findAll();
-//        for (Group grupa : groupList) {
-//            System.out.println(grupa);
-//        }
 
 //====================================  SOLUTION  ========================================
 
@@ -113,16 +115,25 @@ public class main {
 //            System.out.println(rozw);
 //        }
 
-        System.out.println("Find all by User ID: ");
-        List<Solution> findAllByUserIdList = Solution.findAllByUserId(3);
+        int userID = 3;
+        System.out.println("Find all solutions by User ID: "+ userID);
+        List<Solution> findAllByUserIdList = Solution.findAllByUserId(userID);
         for (Solution sol : findAllByUserIdList) {
             System.out.println(sol);
         }
 
-        System.out.println("\nFind all by Exercise ID:");
-        List<Solution> findAllByExerciseIdList = Solution.findAllByExerciseId(3);
-        for (Solution sol : findAllByExerciseIdList) {
-            System.out.println(sol);
+        int exerciseID = 3;
+        System.out.println("\nFind all solutions by Exercise ID:" + exerciseID);
+        List<Solution> findAllByExerciseIdList = Solution.findAllSolutionsByExerciseId(exerciseID);
+        for (Solution solution : findAllByExerciseIdList) {
+            System.out.println(solution);
+        }
+
+        int groupID = 3;
+        System.out.println("\nFind all users by group ID:" + groupID);
+        List<User> findAllUsersByGroupIdList = User.findAllUsersByGroupId(groupID);
+        for (User user : findAllUsersByGroupIdList) {
+            System.out.println(user);
         }
 
     }

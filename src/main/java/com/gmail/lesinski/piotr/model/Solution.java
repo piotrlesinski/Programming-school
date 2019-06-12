@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +25,8 @@ public class Solution {
     private static final String FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY =
             "SELECT * FROM solution JOIN users ON solution.user_id=users.id WHERE users.id=?;";
 
-    private static final String FIND_ALL_BY_USER_ID =
-            "SELECT * FROM solution JOIN exercise ON solution.exercise_id=exercise.id WHERE exercise_id = ?;";
+    private static final String FIND_ALL_SOLUTIONS_BY_USER_ID = "SELECT * FROM solution JOIN exercise ON " +
+            "solution.exercise_id=exercise.id WHERE exercise_id = ? ORDER BY created DESC;";
 
 
 
@@ -35,7 +34,7 @@ public class Solution {
 
         List<Solution> solutionList = new ArrayList<>( );
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_BY_USER_ID)
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_SOLUTIONS_BY_USER_ID)
         ) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -57,14 +56,13 @@ public class Solution {
 
     }
 
-
-    public static List<Solution> findAllByExerciseId (Integer exerciseId) {
+    public static List<Solution> findAllSolutionsByExerciseId (Integer userId) {
 
         List<Solution> solutionList = new ArrayList<>( );
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY)
         ) {
-            statement.setInt(1, exerciseId);
+            statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Solution solution = new Solution();
@@ -78,7 +76,7 @@ public class Solution {
                 }
             }
         } catch (Exception e) {
-            logger.error("Błąd odczytu rozwiązania o id=" + exerciseId, e);
+            logger.error("Błąd odczytu rozwiązania użytkownika o id=" + userId, e);
         }
         return solutionList;
 
