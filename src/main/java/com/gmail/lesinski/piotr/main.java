@@ -115,26 +115,32 @@ public class main {
 //            System.out.println(rozw);
 //        }
 
-        int userID = 3;
-        System.out.println("Find all solutions by User ID: "+ userID);
-        List<Solution> findAllByUserIdList = Solution.findAllByUserId(userID);
-        for (Solution sol : findAllByUserIdList) {
-            System.out.println(sol);
-        }
+//        int userID = 3;
+//        System.out.println("Find all solutions by User ID: " + userID);
+//        List<Solution> findAllByUserIdList = Solution.findAllByUserId(userID);
+//        for (Solution sol : findAllByUserIdList) {
+//            System.out.println(sol);
+//        }
+//
+//        int exerciseID = 3;
+//        System.out.println("\nFind all solutions by Exercise ID:" + exerciseID);
+//        List<Solution> findAllByExerciseIdList = Solution.findAllSolutionsByExerciseId(exerciseID);
+//        for (Solution solution : findAllByExerciseIdList) {
+//            System.out.println(solution);
+//        }
+//
+//        int groupID = 3;
+//        System.out.println("\nFind all users by group ID:" + groupID);
+//        List<User> findAllUsersByGroupIdList = User.findAllUsersByGroupId(groupID);
+//        for (User user : findAllUsersByGroupIdList) {
+//            System.out.println(user);
+//        }
 
-        int exerciseID = 3;
-        System.out.println("\nFind all solutions by Exercise ID:" + exerciseID);
-        List<Solution> findAllByExerciseIdList = Solution.findAllSolutionsByExerciseId(exerciseID);
-        for (Solution solution : findAllByExerciseIdList) {
+        int findRecentSolution = 5;
+        System.out.println("\nFind recent " + findRecentSolution + " solutions");
+        List<Solution> findLastSolution = Solution.findRecent(findRecentSolution);
+        for (Solution solution : findLastSolution) {
             System.out.println(solution);
         }
-
-        int groupID = 3;
-        System.out.println("\nFind all users by group ID:" + groupID);
-        List<User> findAllUsersByGroupIdList = User.findAllUsersByGroupId(groupID);
-        for (User user : findAllUsersByGroupIdList) {
-            System.out.println(user);
-        }
-
     }
 }

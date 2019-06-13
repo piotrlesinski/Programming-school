@@ -22,11 +22,14 @@ public class Solution {
     private int exercise_id;
     private int user_id;
 
+
     private static final String FIND_ALL_SOLUTIONS_BY_USER_ID_QUERY =
             "SELECT * FROM solution JOIN users ON solution.user_id=users.id WHERE users.id=?;";
 
     private static final String FIND_ALL_SOLUTIONS_BY_USER_ID = "SELECT * FROM solution JOIN exercise ON " +
             "solution.exercise_id=exercise.id WHERE exercise_id = ? ORDER BY created DESC;";
+
+    public static final String FIND_ALL_SOLUTIONS_LIMITED = "SELECT * FROM solution ORDER BY created DESC LIMIT ?;";
 
 
 
@@ -80,6 +83,31 @@ public class Solution {
         }
         return solutionList;
 
+    }
+
+    public static List<Solution> findRecent (int limitRecentSolution){
+
+        List<Solution> solutionList = new ArrayList<>( );
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_SOLUTIONS_LIMITED)
+        ) {
+            statement.setInt(1, limitRecentSolution);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Solution solution = new Solution();
+                    solution.setId(resultSet.getInt("id"));
+                    solution.setCreated(resultSet.getString("created"));
+                    solution.setUpdated(resultSet.getString("updated"));
+                    solution.setDescription(resultSet.getString("description"));
+                    solution.setExercise_id(resultSet.getInt("exercise_id"));
+                    solution.setUser_id(resultSet.getInt("user_id"));
+                    solutionList.add(solution);
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Błąd odczytu rozwiązań", e);
+        }
+        return solutionList;
     }
 
     public Solution() {
